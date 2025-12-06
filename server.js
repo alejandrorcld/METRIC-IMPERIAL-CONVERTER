@@ -11,7 +11,7 @@ app.use(express.json());
 app.use('/public', express.static('public'));
 
 app.get('/_api/get-tests', (req, res) => {
-  res.sendFile(path.join(__dirname, 'tests', 'tests.js'));
+  res.sendFile(path.join(__dirname, 'test', 'tests.js'));
 });
 
 apiRoutes(app);
