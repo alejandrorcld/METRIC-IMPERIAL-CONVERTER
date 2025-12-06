@@ -9,25 +9,30 @@ function ConvertHandler() {
   };
 
   this.getNum = function(input) {
-    const numRegex = /^[\d/.]+/;
-    const match = input.match(numRegex);
-    if (!match) return 1;
-    const result = match[0];
-    if (result.split('/').length > 2) return null;
-    try {
-      return eval(result);
-    } catch {
-      return null;
+    const numMatch = input.match(/^[\d.\/]+/);
+    if (!numMatch) return 1;
+    const part = numMatch[0];
+    const slashCount = (part.match(/\//g) || []).length;
+    if (slashCount > 1) return null;
+
+    if (slashCount === 1) {
+      const [a, b] = part.split('/');
+      const numA = parseFloat(a);
+      const numB = parseFloat(b);
+      if (isNaN(numA) || isNaN(numB)) return null;
+      return numA / numB;
     }
+
+    const value = parseFloat(part);
+    return isNaN(value) ? null : value;
   };
 
   this.getUnit = function(input) {
-    const unitRegex = /[a-zA-Z]+$/;
-    const match = input.match(unitRegex);
-    if (!match) return null;
-    let unit = match[0].toLowerCase();
+    const unitMatch = input.match(/[a-zA-Z]+$/);
+    if (!unitMatch) return null;
+    let unit = unitMatch[0].toLowerCase();
     if (unit === 'l') unit = 'L';
-    return units[unit] ? unit : null;
+    return ['gal', 'L', 'mi', 'km', 'lbs', 'kg'].includes(unit) ? unit : null;
   };
 
   this.getReturnUnit = function(initUnit) {
@@ -39,12 +44,15 @@ function ConvertHandler() {
   };
 
   this.convert = function(initNum, initUnit) {
-    if (!units[initUnit]) return null;
-    return initNum * units[initUnit].factor;
+    const u = units[initUnit];
+    if (!u) return null;
+    return initNum * u.factor;
   };
 
   this.getString = function(initNum, returnNum, initUnit, returnUnit) {
-    return `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum.toFixed(5)} ${this.spellOutUnit(returnUnit)}`;
+    const initFull = this.spellOutUnit(initUnit);
+    const returnFull = this.spellOutUnit(returnUnit);
+    return `${initNum} ${initFull} converts to ${returnNum.toFixed(5)} ${returnFull}`;
   };
 }
 

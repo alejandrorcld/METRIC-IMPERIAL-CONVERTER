@@ -4,7 +4,7 @@ module.exports = function(app) {
   const convertHandler = new ConvertHandler();
 
   app.get('/api/convert', (req, res) => {
-    const input = req.query.input;
+    const input = req.query.input || '';
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
 
@@ -19,13 +19,14 @@ module.exports = function(app) {
     }
 
     const returnUnit = convertHandler.getReturnUnit(initUnit);
-    const returnNum = convertHandler.convert(initNum, initUnit);
-    const string = convertHandler.getString(initNum, returnNum, initUnit, returnUnit);
+    const rawReturnNum = convertHandler.convert(initNum, initUnit);
+    const returnNum = Number(rawReturnNum.toFixed(5));
+    const string = convertHandler.getString(initNum, rawReturnNum, initUnit, returnUnit);
 
     res.json({
       initNum,
       initUnit,
-      returnNum: Number(returnNum.toFixed(5)),
+      returnNum,
       returnUnit,
       string
     });
