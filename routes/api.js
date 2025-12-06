@@ -8,6 +8,7 @@ module.exports = function(app) {
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
 
+    // Manejo de errores en inglés (exactamente como espera FreeCodeCamp)
     if (initNum === null && initUnit === null) {
       return res.json('invalid number and unit');
     }
