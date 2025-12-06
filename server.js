@@ -10,8 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/public', express.static('public'));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/_api/get-tests', (req, res) => {
+  res.sendFile(path.join(__dirname, 'tests', 'tests.js'));
 });
 
 apiRoutes(app);
