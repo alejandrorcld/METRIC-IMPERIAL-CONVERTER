@@ -12,6 +12,7 @@ function ConvertHandler() {
     const numMatch = input.match(/^[\d.\/]+/);
     if (!numMatch) return 1;
     const part = numMatch[0];
+
     const slashCount = (part.match(/\//g) || []).length;
     if (slashCount > 1) return null;
 
