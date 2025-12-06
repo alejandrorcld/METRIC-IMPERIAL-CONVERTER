@@ -51,10 +51,8 @@ function ConvertHandler() {
   };
 
   this.getString = function(initNum, returnNum, initUnit, returnUnit) {
-    const initFull = this.spellOutUnit(initUnit);
-    const returnFull = this.spellOutUnit(returnUnit);
-    return `${initNum} ${initFull} converts to ${returnNum.toFixed(5)} ${returnFull}`;
-  };
+  return `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum.toFixed(5)} ${this.spellOutUnit(returnUnit)}`;
+};
 }
 
 module.exports = ConvertHandler;
