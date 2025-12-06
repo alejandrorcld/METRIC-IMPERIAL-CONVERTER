@@ -1,18 +1,17 @@
 function ConvertHandler() {
   const units = {
     gal: { returnUnit: 'L', spellOut: 'gallons', factor: 3.78541 },
-    L:   { returnUnit: 'gal', spellOut: 'liters', factor: 0.26417 },
+    L:   { returnUnit: 'gal', spellOut: 'liters', factor: 0.264172 },
     mi:  { returnUnit: 'km', spellOut: 'miles', factor: 1.60934 },
-    km:  { returnUnit: 'mi', spellOut: 'kilometers', factor: 0.62137 },
+    km:  { returnUnit: 'mi', spellOut: 'kilometers', factor: 0.621373 },
     lbs: { returnUnit: 'kg', spellOut: 'pounds', factor: 0.453592 },
-    kg:  { returnUnit: 'lbs', spellOut: 'kilograms', factor: 2.20462 }
+    kg:  { returnUnit: 'lbs', spellOut: 'kilograms', factor: 2.204624 }
   };
 
   this.getNum = function(input) {
     const numMatch = input.match(/^[\d.\/]+/);
     if (!numMatch) return 1;
     const part = numMatch[0];
-
     const slashCount = (part.match(/\//g) || []).length;
     if (slashCount > 1) return null;
 
@@ -33,7 +32,7 @@ function ConvertHandler() {
     if (!unitMatch) return null;
     let unit = unitMatch[0].toLowerCase();
     if (unit === 'l') unit = 'L';
-    return ['gal', 'L', 'mi', 'km', 'lbs', 'kg'].includes(unit) ? unit : null;
+    return ['gal','L','mi','km','lbs','kg'].includes(unit) ? unit : null;
   };
 
   this.getReturnUnit = function(initUnit) {
@@ -45,14 +44,12 @@ function ConvertHandler() {
   };
 
   this.convert = function(initNum, initUnit) {
-    const u = units[initUnit];
-    if (!u) return null;
-    return initNum * u.factor;
+    return initNum * units[initUnit].factor;
   };
 
   this.getString = function(initNum, returnNum, initUnit, returnUnit) {
-  return `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum.toFixed(5)} ${this.spellOutUnit(returnUnit)}`;
-};
+    return `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum.toFixed(5)} ${this.spellOutUnit(returnUnit)}`;
+  };
 }
 
 module.exports = ConvertHandler;
