@@ -25,7 +25,7 @@ module.exports = function(app) {
     res.json({
       initNum,
       initUnit,
-      returnNum,
+      returnNum: Number(returnNum.toFixed(5)),
       returnUnit,
       string
     });
