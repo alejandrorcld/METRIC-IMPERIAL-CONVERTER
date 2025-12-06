@@ -16,11 +16,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Ruta que FCC usa para leer los tests
-app.get('/_api/get-tests', (req, res) => {
-  res.sendFile(path.join(__dirname, 'test', 'tests.js'));
-});
-
 // Rutas de la API
 apiRoutes(app);
 
