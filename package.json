@@ -20,7 +20,8 @@
   },
   "type": "commonjs",
   "devDependencies": {
-    "chai": "^6.2.1",
-    "mocha": "^11.7.5"
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.2.0"
   }
 }

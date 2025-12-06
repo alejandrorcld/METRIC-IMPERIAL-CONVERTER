@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-// Rutas API
+
 apiRoutes(app);
 
 const PORT = process.env.PORT || 3000;
@@ -21,4 +21,4 @@ app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
 
-module.exports = app; // para pruebas
+module.exports = app;
