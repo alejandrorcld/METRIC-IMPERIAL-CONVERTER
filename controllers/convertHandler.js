@@ -1,11 +1,11 @@
 function ConvertHandler() {
   const units = {
     gal: { returnUnit: 'L', spellOut: 'gallons', factor: 3.78541 },
-    L:   { returnUnit: 'gal', spellOut: 'liters', factor: 1/3.78541 },
+    L:   { returnUnit: 'gal', spellOut: 'liters', factor: 0.26417 },
     mi:  { returnUnit: 'km', spellOut: 'miles', factor: 1.60934 },
-    km:  { returnUnit: 'mi', spellOut: 'kilometers', factor: 1/1.60934 },
+    km:  { returnUnit: 'mi', spellOut: 'kilometers', factor: 0.62137 },
     lbs: { returnUnit: 'kg', spellOut: 'pounds', factor: 0.453592 },
-    kg:  { returnUnit: 'lbs', spellOut: 'kilograms', factor: 1/0.453592 }
+    kg:  { returnUnit: 'lbs', spellOut: 'kilograms', factor: 2.20462 }
   };
 
   this.getNum = function(input) {
