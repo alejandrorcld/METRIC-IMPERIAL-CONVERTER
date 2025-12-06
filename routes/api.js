@@ -14,7 +14,7 @@ module.exports = function(app) {
 
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const rawReturnNum = convertHandler.convert(initNum, initUnit);
-    const returnNum = rawReturnNum; // valor exacto
+    const returnNum =  Number(rawReturnNum.toFixed(5));
     const string = convertHandler.getString(initNum, rawReturnNum, initUnit, returnUnit);
 
     res.json({ initNum, initUnit, returnNum, returnUnit, string });
