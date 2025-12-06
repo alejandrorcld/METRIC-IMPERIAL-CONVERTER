@@ -11,9 +11,9 @@ function ConvertHandler() {
   this.getNum = function(input) {
     const numRegex = /^[\d/.]+/;
     const match = input.match(numRegex);
-    if (!match) return 1; // default
+    if (!match) return 1;
     const result = match[0];
-    if (result.split('/').length > 2) return null; // double fraction error
+    if (result.split('/').length > 2) return null;
     try {
       return eval(result);
     } catch {
@@ -26,7 +26,7 @@ function ConvertHandler() {
     const match = input.match(unitRegex);
     if (!match) return null;
     let unit = match[0].toLowerCase();
-    if (unit === 'l') unit = 'L'; // litro siempre mayúscula
+    if (unit === 'l') unit = 'L';
     return units[unit] ? unit : null;
   };
 
