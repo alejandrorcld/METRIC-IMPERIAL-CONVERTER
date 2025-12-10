@@ -52,13 +52,14 @@ class ConvertHandler {
   }
 
   convert(initNum, initUnit) {
+    // Constantes ajustadas a lo que FCC espera
     const rates = {
       gal: 3.78541,
       L: 1 / 3.78541,
       mi: 1.60934,
       km: 1 / 1.60934,
       lbs: 0.453592,
-      kg: 2.20462
+      kg: 2.204624   // importante: FCC usa 2.204624
     };
     const factor = rates[initUnit];
     if (!factor || typeof initNum !== 'number') return null;
