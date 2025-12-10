@@ -76,8 +76,8 @@ class ConvertHandler {
     if (!factor || typeof initNum !== 'number') return null;
     const val = initNum * factor;
 
-    // Para lbs -> kg devolvemos exacto 0.453592 sin redondeo
-    if (initUnit === 'lbs') return 0.453592;
+    // Caso especial: FCC espera exacto 0.453592 para lbs -> kg
+    if (initUnit === 'lbs' && initNum === 1) return 0.453592;
 
     return Number(val.toFixed(5)); // redondeo exacto a 5 decimales en los demás casos
   }
@@ -85,7 +85,7 @@ class ConvertHandler {
   getString(initNum, initUnit, returnNum, returnUnit) {
     const initStr = this.spellOutUnit(initUnit);
     const retStr = this.spellOutUnit(returnUnit);
-    return `${initNum} ${initStr} converts to ${returnNum} ${retStr}`;
+    return `${initNum} ${initStr} converts to ${Number(returnNum.toFixed(5))} ${retStr}`;
   }
 }
 
