@@ -64,7 +64,8 @@ class ConvertHandler {
     if (!factor || typeof initNum !== 'number') return null;
 
     const val = initNum * factor;
-    return Number(val.toFixed(5)); // siempre 5 decimales
+    // FCC espera SIEMPRE 5 decimales exactos
+    return Number(val.toFixed(5));
   }
 
   getString(initNum, initUnit, returnNum, returnUnit) {
