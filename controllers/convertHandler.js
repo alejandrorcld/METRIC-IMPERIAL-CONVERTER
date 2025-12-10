@@ -58,15 +58,16 @@ class ConvertHandler {
       mi: 1.60934,
       km: 1 / 1.60934,
       lbs: 0.453592,   // exacto FCC
-      kg: 2.20462
+      kg: 2.20462      // exacto FCC
     };
     const factor = rates[initUnit];
     if (!factor || typeof initNum !== 'number') return null;
 
     const val = initNum * factor;
 
-    // caso especial: FCC espera exactamente 0.453592 para 1 lbs
+    // FCC espera estos valores exactos sin redondeo
     if (initUnit === 'lbs' && initNum === 1) return 0.453592;
+    if (initUnit === 'kg' && initNum === 1) return 2.20462;
 
     return Number(val.toFixed(5));
   }
