@@ -57,19 +57,14 @@ class ConvertHandler {
       L: 1 / 3.78541,
       mi: 1.60934,
       km: 1 / 1.60934,
-      lbs: 0.453592,   // exacto FCC
-      kg: 2.20462      // exacto FCC
+      lbs: 0.453592,
+      kg: 2.20462
     };
     const factor = rates[initUnit];
     if (!factor || typeof initNum !== 'number') return null;
 
     const val = initNum * factor;
-
-    // FCC espera estos valores exactos sin redondeo
-    if (initUnit === 'lbs' && initNum === 1) return 0.453592;
-    if (initUnit === 'kg' && initNum === 1) return 2.20462;
-
-    return Number(val.toFixed(5));
+    return Number(val.toFixed(5)); // FCC espera 5 decimales (ej. 0.45359)
   }
 
   getString(initNum, initUnit, returnNum, returnUnit) {
