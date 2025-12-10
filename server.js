@@ -7,7 +7,7 @@ const app = express();
 
 dotenv.config();
 
-// habilitar CORS para todos los orígenes
+// habilitar CORS para todos los orígenes, incluyendo 'null'
 app.use(cors({ origin: '*' }));
 
 app.use(express.urlencoded({ extended: true }));
