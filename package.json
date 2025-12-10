@@ -1,27 +1,19 @@
 {
   "name": "metric-imperial-converter",
   "version": "1.0.0",
-  "description": "FreeCodeCamp Metric-Imperial Converter Microservice",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha --timeout 5000"
   },
-  "keywords": [
-    "freecodecamp",
-    "microservice",
-    "metric-imperial-converter"
-  ],
-  "author": "Alejandro Recalde",
-  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
     "express": "^4.18.2"
   },
-  "type": "commonjs",
   "devDependencies": {
-    "chai": "^4.3.7",
+    "chai": "^4.3.10",
     "chai-http": "^4.3.0",
-    "mocha": "^10.2.0"
+    "mocha": "^10.4.0"
   }
 }

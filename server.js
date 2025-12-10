@@ -1,27 +1,26 @@
+// server.js
+'use strict';
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const apiRoutes = require('./routes/api.js');
-
+const dotenv = require('dotenv');
 const app = express();
 
-app.use(cors({ optionsSuccessStatus: 200 }));
-app.use(express.urlencoded({ extended: false }));
+dotenv.config();
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/public', express.static('public'));
 
+// rutas
+require('./routes/api.js')(app);
+
+// raíz
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.send('Metric-Imperial Converter API');
 });
 
-// Ruta que FCC usa para leer los tests
-app.get('/_api/get-tests', (req, res) => {
-  res.sendFile(path.join(__dirname, 'test', 'tests.js'));
-});
+const port = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => console.log(`Server listening on ${port}`));
+}
 
-apiRoutes(app);
-
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
-
-module.exports = app;
+module.exports = app; // para pruebas
