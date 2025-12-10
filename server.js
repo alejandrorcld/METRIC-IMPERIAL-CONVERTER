@@ -6,7 +6,10 @@ const dotenv = require('dotenv');
 const app = express();
 
 dotenv.config();
-app.use(cors());
+
+// habilitar CORS para todos los orígenes
+app.use(cors({ origin: '*' }));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -23,4 +26,4 @@ if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => console.log(`Server listening on ${port}`));
 }
 
-module.exports = app; // para pruebas
+module.exports = app;
